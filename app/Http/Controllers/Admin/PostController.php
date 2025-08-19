@@ -113,7 +113,8 @@ class PostController extends Controller
 			$object->status = $request->status;
 			$object->save();
 
-			FileHelper::uploadFile($request->image, 'posts', $object->id, ThisModel::class, 'image', 3);
+			// FileHelper::uploadFile($request->image, 'posts', $object->id, ThisModel::class, 'image', 3);
+            FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
 
 			// if ($request->publish == 1 && $object->status == 1) $object->send();
 
@@ -179,9 +180,11 @@ class PostController extends Controller
 
 			if ($request->image) {
 				if (isset($object->image)) {
-					FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+					FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+					// FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
 				}
-				FileHelper::uploadFile($request->image, 'posts', $object->id, ThisModel::class, 'image', 3);
+				// FileHelper::uploadFile($request->image, 'posts', $object->id, ThisModel::class, 'image', 3);
+                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
 			}
 
 			// if ($request->publish == 1 && $object->status == 1) $object->send();
@@ -207,7 +210,8 @@ class PostController extends Controller
 			);
 		} else {
             if (isset($object->image)) {
-                FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+                FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+                // FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
             }
 			$object->delete();
 			$message = array(

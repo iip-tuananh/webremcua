@@ -89,7 +89,7 @@ class ReviewController extends Controller
 			$object->save();
 
             if($request->image) {
-                FileHelper::uploadFile($request->image, 'reviews', $object->id, ThisModel::class, 'image', 99);
+                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
             }
 
 			DB::commit();
@@ -141,9 +141,10 @@ class ReviewController extends Controller
 
 			if($request->image) {
 				if($object->image) {
-					FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+					FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+					// FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
 				}
-				FileHelper::uploadFile($request->image, 'reviews', $object->id, ThisModel::class, 'image', 99);
+				FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
 			}
 
 			DB::commit();
@@ -167,7 +168,8 @@ class ReviewController extends Controller
 			);
 		} else {
 			if($object->image) {
-				FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+				FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+				// FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
 			}
 			$object->delete();
 			$message = array(

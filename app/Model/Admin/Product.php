@@ -300,7 +300,8 @@ class Product extends BaseModel
             $deleted = ProductGallery::where('product_id', $this->id)->whereNotIn('id', $exist_ids)->get();
             foreach ($deleted as $item) {
                 if ($item->image) {
-                    FileHelper::forceDeleteFiles($item->image->id, $item->id, ProductGallery::class, null);
+                    // FileHelper::forceDeleteFiles($item->image->id, $item->id, ProductGallery::class, null);
+                    FileHelper::deleteFileFromCloudflare($item->image, $item->id, ProductGallery::class);
                     $item->image->removeFromDB();
                 }
                 $item->removeFromDB();
@@ -317,16 +318,21 @@ class Product extends BaseModel
                 $gallery->save();
 
                 if (isset($g['image'])) {
-                    if ($gallery->image) $gallery->image->removeFromDB();
+                    if ($gallery->image) {
+                        FileHelper::deleteFileFromCloudflare($gallery->image, $gallery->id, ProductGallery::class);
+                        $gallery->image->removeFromDB();
+                    }
                     $file = $g['image'];
-                    FileHelper::uploadFile($file, 'product_gallery', $gallery->id, ProductGallery::class, null, 1);
+                    // FileHelper::uploadFile($file, 'product_gallery', $gallery->id, ProductGallery::class, null, 99);
+                    FileHelper::uploadFileToCloudflare($file, $gallery->id, ProductGallery::class, null);
                 }
             }
         } else {
             $galleries = $this->galleries;
             foreach ($galleries as $gallery) {
                 if ($gallery->image) {
-                    FileHelper::forceDeleteFiles($gallery->image->id, $gallery->id, ProductGallery::class, null);
+                    FileHelper::deleteFileFromCloudflare($gallery->image, $gallery->id, ProductGallery::class);
+                    // FileHelper::forceDeleteFiles($gallery->image->id, $gallery->id, ProductGallery::class, null);
                     $gallery->image->removeFromDB();
                 }
             }

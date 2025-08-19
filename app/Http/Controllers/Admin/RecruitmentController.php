@@ -93,7 +93,7 @@ class RecruitmentController extends Controller
 
 
             if($request->image) {
-                FileHelper::uploadFile($request->image, 'recruitments', $recruitment->id, ThisModel::class, 'image', 99);
+                FileHelper::uploadFileToCloudflare($request->image, $recruitment->id, ThisModel::class, 'image');
             }
 
             DB::commit();
@@ -118,8 +118,11 @@ class RecruitmentController extends Controller
             $recruitment->save();
 
             if($request->image) {
-                if($recruitment->image) FileHelper::forceDeleteFiles($recruitment->image->id, $recruitment->id, ThisModel::class, 'image');
-                FileHelper::uploadFile($request->image, 'recruitments', $recruitment->id, ThisModel::class, 'image', 99);
+                if($recruitment->image) {
+                    FileHelper::deleteFileFromCloudflare($recruitment->image, $recruitment->id, ThisModel::class, 'image');
+                    // FileHelper::forceDeleteFiles($recruitment->image->id, $recruitment->id, ThisModel::class, 'image');
+                }
+                FileHelper::uploadFileToCloudflare($request->image, $recruitment->id, ThisModel::class, 'image');
             }
 
             DB::commit();
@@ -133,6 +136,10 @@ class RecruitmentController extends Controller
     public function delete($id)
     {
         $object = Recruitment::query()->find($id);
+        if (isset($object->image)) {
+            FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+            // FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+        }
         $object->delete();
         $message = array(
             "message" => "Thao tác thành công!",

@@ -146,7 +146,8 @@ class ProductController extends Controller
             $object->unit_id = $request->unit_id;
 			$object->save();
 
-			FileHelper::uploadFile($request->image, 'products', $object->id, ThisModel::class, 'image',99);
+			// FileHelper::uploadFile($request->image, 'products', $object->id, ThisModel::class, 'image',99);
+            FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
 
 			$object->syncGalleries($request->galleries);
 			$object->syncDocuments($request->attachments, 'products/attachments/');
@@ -232,9 +233,10 @@ class ProductController extends Controller
 
 			if($request->image) {
 				if($object->image) {
-					FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+                    FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+					// FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
 				}
-				FileHelper::uploadFile($request->image, 'products', $object->id, ThisModel::class, 'image',99);
+				FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
 			}
 
 			$object->syncGalleries($request->galleries);
@@ -279,12 +281,14 @@ class ProductController extends Controller
 			);
 		} else {
             if (isset($object->image)) {
-                FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+                FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+                // FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
             }
             if (isset($object->galleries)) {
                 foreach ($object->galleries as $gallery) {
                     if ($gallery->image) {
-                        FileHelper::forceDeleteFiles($gallery->image->id, $gallery->id, ProductGallery::class);
+                        FileHelper::deleteFileFromCloudflare($gallery->image, $gallery->id, ProductGallery::class);
+                        // FileHelper::forceDeleteFiles($gallery->image->id, $gallery->id, ProductGallery::class);
                         $gallery->image->removeFromDB();
                     }
                     $gallery->removeFromDB();

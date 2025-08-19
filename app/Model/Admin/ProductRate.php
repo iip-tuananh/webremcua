@@ -84,7 +84,8 @@ class ProductRate extends Model
             $deleted = ProductRateGallery::where('product_rate_id', $this->id)->whereNotIn('id', $exist_ids)->get();
             foreach ($deleted as $item) {
                 if ($item->image) {
-                    FileHelper::forceDeleteFiles($item->image->id, $item->id, ProductRateGallery::class, null);
+                    FileHelper::deleteFileFromCloudflare($item->image, $item->id, ProductRateGallery::class, null);
+                    // FileHelper::forceDeleteFiles($item->image->id, $item->id, ProductRateGallery::class, null);
                     $item->image->removeFromDB();
                 }
                 $item->removeFromDB();
@@ -101,16 +102,21 @@ class ProductRate extends Model
                 $gallery->save();
 
                 if (isset($g['image'])) {
-                    if ($gallery->image) $gallery->image->removeFromDB();
+                    if ($gallery->image) {
+                        FileHelper::deleteFileFromCloudflare($gallery->image, $gallery->id, ProductRateGallery::class, null);
+                        $gallery->image->removeFromDB();
+                    }
                     $file = $g['image'];
-                    FileHelper::uploadFile($file, 'product_rate', $gallery->id, ProductRateGallery::class, null, 1);
+                    // FileHelper::uploadFile($file, 'product_rate', $gallery->id, ProductRateGallery::class, null, 1);
+                    FileHelper::uploadFileToCloudflare($file, $gallery->id, ProductRateGallery::class, null);
                 }
             }
         } else {
             $galleries = $this->galleries;
             foreach ($galleries as $gallery) {
                 if ($gallery->image) {
-                    FileHelper::forceDeleteFiles($gallery->image->id, $gallery->id, ProductRateGallery::class, null);
+                    FileHelper::deleteFileFromCloudflare($gallery->image, $gallery->id, ProductRateGallery::class, null);
+                    // FileHelper::forceDeleteFiles($gallery->image->id, $gallery->id, ProductRateGallery::class, null);
                     $gallery->image->removeFromDB();
                 }
             }

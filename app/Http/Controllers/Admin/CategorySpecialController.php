@@ -115,7 +115,8 @@ class CategorySpecialController extends Controller
             $object->save();
 
             if ($request->image) {
-                FileHelper::uploadFile($request->image, 'category_special', $object->id, ThisModel::class, 'image', 99);
+                // FileHelper::uploadFile($request->image, 'category_special', $object->id, ThisModel::class, 'image', 99);
+                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
             }
 
             DB::commit();
@@ -183,11 +184,13 @@ class CategorySpecialController extends Controller
             if ($request->image) {
 
                 if ($object->image) {
-                    FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+                    FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+                    // FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
                 }
 
 
-                FileHelper::uploadFile($request->image, 'category_special', $object->id, ThisModel::class, 'image', 99);
+                // FileHelper::uploadFile($request->image, 'category_special', $object->id, ThisModel::class, 'image', 99);
+                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
             }
 
             DB::commit();
@@ -218,7 +221,8 @@ class CategorySpecialController extends Controller
             }
 
             if (isset($object->image)) {
-                FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+                FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+                // FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
             }
 
             $object->delete();

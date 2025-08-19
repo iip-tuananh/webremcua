@@ -94,7 +94,8 @@ class BlockController extends Controller
 
 
 			if($request->image) {
-				FileHelper::uploadFile($request->image, 'blocks', $object->id, ThisModel::class, 'image');
+				// FileHelper::uploadFile($request->image, 'blocks', $object->id, ThisModel::class, 'image');
+                FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
 			}
 
 			DB::commit();
@@ -147,9 +148,10 @@ class BlockController extends Controller
 
 			if($request->image) {
 				if(@$object->image->id) {
-					FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+					FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+					// FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
 				}
-				FileHelper::uploadFile($request->image, 'blocks', $object->id, ThisModel::class, 'image');
+				FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
 			}
 
             if ($request->galleries) {
@@ -176,6 +178,10 @@ class BlockController extends Controller
 				"alert-type" => "warning"
 			);
 		} else {
+            if (isset($object->image)) {
+                FileHelper::deleteFileFromCloudflare($object->image, $object->id, ThisModel::class, 'image');
+                // FileHelper::forceDeleteFiles($object->image->id, $object->id, ThisModel::class, 'image');
+            }
 			$object->delete();
 			$message = array(
 				"message" => "Thao tác thành công!",
