@@ -349,7 +349,7 @@
             color: #000;
         }
     </style>
-    @foreach ($categorySpecial as $category)
+    @foreach ($productCategories as $category)
         @if ($category->products->count() > 0)
             <div class="section_product_new section_product">
                 <div class="container">
