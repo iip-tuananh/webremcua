@@ -170,6 +170,7 @@
     </section>
     <link rel="preload" as="script" href="/site/js/count-down.js?1743048451127" />
     <script src="/site/js/count-down.js?1743048451127" type="text/javascript"></script>
+    @if ($categorySpecialFlashsale)
     <div class="section_flash_sale">
         <div class="container">
             <div class="thumb-flasale">
@@ -241,6 +242,7 @@
             timestamp: new Date().getTime(),
         }
     </script> --}}
+    @endif
     <script src="/site/js/flashsale.js?1743048451127" defer></script>
 
     <section class="section_category_product">
