@@ -56,7 +56,7 @@
                                                 data-src="{{ $blog->image ? $blog->image->path : 'https://placehold.co/600x400' }}" alt="{{ $blog->name }}">
                                         </a>
                                         <div class="time-post badge">
-                                            {{ $blog->created_at->format('d/m/Y') }}
+                                            {{ date('d/m/Y', strtotime($blog->time)) }}
                                         </div>
                                     </div>
                                     <div class="block-content">

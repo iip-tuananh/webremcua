@@ -122,6 +122,8 @@
                 facebook: this.facebook,
                 hotline: this.hotline,
                 address_company: this.address_company,
+                address_company_2: this.address_company_2,
+                address_company_3: this.address_company_3,
                 address_center_insurance: this.address_center_insurance,
                 zalo: this.zalo,
                 location: this.location,

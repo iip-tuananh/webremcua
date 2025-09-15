@@ -930,8 +930,8 @@ button.close {
 .backtop {
     position: fixed;
     top: auto !important;
-    bottom: 200px;
-    right: 17px;
+    bottom: 178px;
+    right: 36px;
     background: var(--mainColor);
     height: 35px;
     width: 35px;

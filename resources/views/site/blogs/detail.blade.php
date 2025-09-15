@@ -71,7 +71,7 @@
                                                     class=""></path>
                                             </svg>
                                             <span>Ngày</span>
-                                            {{ $blog->created_at->format('d/m/Y') }}
+                                            {{ date('d/m/Y', strtotime($blog->time)) }}
                                         </div>
                                     </div>
                                     <div class="rte">

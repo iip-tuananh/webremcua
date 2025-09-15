@@ -13,6 +13,23 @@
 
         }
 
+        get time() {
+            // AngularJS ng-model cần 1 Date object ổn định
+            if (this._time && !this._timeObj) {
+                this._timeObj = moment(this._time, 'YYYY-MM-DD').toDate();
+            }
+            return this._timeObj;
+        }
+
+        set time(value) {
+            // AngularJS sẽ đưa Date object vào đây
+            console.log(value);
+            this._timeObj = value instanceof Date ? value : moment(value).toDate();
+            this._time = this._timeObj ?
+                moment(this._timeObj).format('YYYY-MM-DD') :
+                null;
+        }
+
         get image() {
             return this._image;
         }
@@ -27,7 +44,8 @@
                 cate_id: this.cate_id,
                 intro: this.intro,
                 body: this.body,
-                status: this.status
+                status: this.status,
+                time: this._time,
             }
 
             data = jsonToFormData(data);

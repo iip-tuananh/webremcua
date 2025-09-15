@@ -153,7 +153,8 @@ class PostController extends Controller
 				'status' => 'required|in:0,1',
 				// 'intro' => 'nullable|max:255',
 				'body' => 'required',
-				'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2000'
+				'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2000',
+				'time' => 'required|date'
 			]
 		);
 
@@ -176,6 +177,7 @@ class PostController extends Controller
 			$object->intro = $request->intro;
 			$object->body = $request->body;
 			$object->status = $request->status;
+			$object->time = $request->time;
 			$object->save();
 
 			if ($request->image) {

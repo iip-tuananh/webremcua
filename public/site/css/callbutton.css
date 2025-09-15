@@ -1,7 +1,7 @@
 .hotline-phone-ring-wrap {
     position: fixed;
     bottom: -5px;
-    right: 168px;
+    right: 123px;
     z-index: 999999
 }
 
@@ -16,8 +16,8 @@
     -webkit-backface-visibility: hidden;
     -webkit-transform: translateZ(0);
     transition: visibility .5s;
-    left: 0;
-    bottom: -26px;
+    left: 8px;
+    bottom: 2px;
     display: block
 }
 
@@ -34,8 +34,8 @@
     height: 85px;
     top: 10px;
     left: 10px;
-    background-color: #dabf57;
-    border: 2px solid #dabf57;
+    background-color: #910705;
+    border: 2px solid #910705;
     -webkit-animation: 1.2s ease-in-out infinite phonering-alo-circle-anim;
     animation: 1.2s ease-in-out infinite phonering-alo-circle-anim;
     transform-origin: 50% 50%;
@@ -47,7 +47,7 @@
     height: 55px;
     top: 25px;
     left: 25px;
-    background-color: rgb(233 216 107);
+    background-color: rgb(145 7 5);
     border: 2px solid transparent;
     -webkit-animation: 2.3s ease-in-out infinite phonering-alo-circle-fill-anim;
     animation: 2.3s ease-in-out infinite phonering-alo-circle-fill-anim;
@@ -55,7 +55,7 @@
 }
 
 .hotline-phone-ring-img-circle {
-    background-color: #b7b063;
+    background-color: #910705;
     width: 33px;
     height: 33px;
     top: 37px;
@@ -85,17 +85,18 @@
 }
 
 .hotline-phone-ring-img-circle .pps-btn-img img {
-    width: 20px;
-    height: 20px
+    width: 33px;
+    height: 33px;
 }
 
 .hotline-bar {
     position: absolute;
-    background: rgb(183 176 99 / 84%);
-    height: 40px;
+    background: rgb(145 7 5);
+    height: 45px;
     width: 160px;
     line-height: 40px;
     padding: 0 18px;
+    padding-left: 28px;
     background-size: 100%;
     cursor: pointer;
     transition: .8s;
@@ -119,7 +120,7 @@
     text-indent: 18px;
     display: block;
     letter-spacing: 1px;
-    line-height: 39px;
+    line-height: 45px;
     font-family: Arial
 }
 
@@ -188,7 +189,7 @@
     position: relative;
     margin: 0 auto;
     border-radius: 100%;
-    border: 5px solid #fff;
+    /* border: 5px solid #fff; */
     animation: 2s infinite play;
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
@@ -201,7 +202,8 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 47px
+    width: 100%;
+    height: 100%;
 }
 
 @keyframes play {
@@ -210,12 +212,12 @@
     }
 
     15% {
-        box-shadow: 0 0 0 5px rgba(0,0,0,.4)
+        box-shadow: 0 0 0 5px rgba(17, 130, 252, 0.4);
     }
 
     25% {
-        box-shadow: 0 0 0 10px rgba(0,0,0,.4),0 0 0 20px rgba(0,0,0,.2);
-        box-shadow: 0 0 0 15px rgba(0,0,0,.4),0 0 0 30px rgba(0,0,0,.2)
+        box-shadow: 0 0 0 10px rgba(17, 130, 252, 0.4),0 0 0 20px rgba(17, 130, 252, 0.2);
+        box-shadow: 0 0 0 15px rgba(17, 130, 252, 0.4),0 0 0 30px rgba(17, 130, 252, 0.2)
     }
 }
 
@@ -227,13 +229,13 @@
 .fabs {
     width: 56px;
     height: 56px;
-    background-color: #fff;
+    background-color: #1182FC;
     display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
     right: 25px;
-    bottom: 24px;
+    bottom: 95px;
     user-select: none;
     cursor: pointer;
     color: #ff9500;

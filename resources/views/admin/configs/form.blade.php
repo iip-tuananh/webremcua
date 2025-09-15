@@ -61,8 +61,16 @@
                     </span>
 				</div>
                 <div class="form-group custom-group">
-                    <label class="form-label">Địa chỉ công ty</label>
+                    <label class="form-label">Địa chỉ công ty (cơ sở 1)</label>
                     <input class="form-control" ng-model="form.address_company" type="text">
+                </div>
+                <div class="form-group custom-group">
+                    <label class="form-label">Địa chỉ công ty (cơ sở 2)</label>
+                    <input class="form-control" ng-model="form.address_company_2" type="text">
+                </div>
+                <div class="form-group custom-group">
+                    <label class="form-label">Địa chỉ công ty (cơ sở 3)</label>
+                    <input class="form-control" ng-model="form.address_company_3" type="text">
                 </div>
                 <div class="form-group custom-group">
                     <label class="form-label">Địa chỉ sản xuất</label>

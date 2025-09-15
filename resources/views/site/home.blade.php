@@ -314,7 +314,14 @@
             margin-bottom: 30px;
             background-color: #f0f0f0;
             overflow: hidden;
+            height: 280px;
             /* ngăn ảnh tràn ra ngoài */
+        }
+
+        @media (max-width: 767px) {
+            .section_category_product .category-item .category-box-image {
+                height: 210px;
+            }
         }
 
         .section_category_product .category-item .category-box-image img {
@@ -471,9 +478,9 @@
                                             </div>
                                             <div class="article-meta">
                                                 <div class="article-date">
-                                                    <time>{{ date('d', strtotime($post->created_at)) }} Tháng
-                                                        {{ date('m', strtotime($post->created_at)) }},
-                                                        {{ date('Y', strtotime($post->created_at)) }}</time>
+                                                    <time>{{ date('d', strtotime($post->time)) }} Tháng
+                                                        {{ date('m', strtotime($post->time)) }},
+                                                        {{ date('Y', strtotime($post->time)) }}</time>
                                                 </div>
                                                 <a class="article-seemore"
                                                     href="{{ route('front.detail-blog', $post->slug) }}"

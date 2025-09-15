@@ -678,7 +678,8 @@
             .addThis_iconContact,
             .livechat-mes,
             .chat-mail,
-            .call-hotline {
+            .call-hotline,
+            .call-button-hidden-xs {
                 display: none !important;
             }
 
@@ -749,7 +750,33 @@
             return false;
         })
     </script>
-    <a target="_blank" class="call-hotline" href="tel:{{ str_replace(' ', '', $config->hotline) }}">
+    <div class="call-button-hidden-xs">
+        <div onclick="window.location.href= 'tel:{{ $config->hotline }}'" class="hotline-phone-ring-wrap">
+            <div class="hotline-phone-ring">
+                <div class="hotline-phone-ring-circle"></div>
+                <div class="hotline-phone-ring-circle-fill"></div>
+                <div class="hotline-phone-ring-img-circle">
+                    <a href="tel: {{ str_replace(' ', '', $config->hotline) }}" class="pps-btn-img">
+                        <img src="/site/images/icon-2.png" alt="Gọi điện thoại" width="50" loading="lazy">
+                    </a>
+                </div>
+            </div>
+            <a href="tel:{{ str_replace(' ', '', $config->hotline) }}">
+            </a>
+            <div class="hotline-bar"><a href="tel:{{ str_replace(' ', '', $config->hotline) }}">
+                </a><a href="tel:{{ str_replace(' ', '', $config->hotline) }}">
+                    <span class="text-hotline">{{ $config->hotline }}</span>
+                </a>
+            </div>
+
+        </div>
+        <div class="fabs roundCool call-animation" id="main-fab">
+            <a href="https://zalo.me/{{ str_replace(' ', '', $config->zalo) }}">
+            <img class="img-circle" src="/site/images/zalo-2.png" alt="" width="135" loading="lazy">
+            </a>
+        </div>
+    </div>
+    {{-- <a target="_blank" class="call-hotline" href="tel:{{ str_replace(' ', '', $config->hotline) }}">
         <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="22" cy="22" r="22" fill="url(#paint2_linear)" />
             <path fill-rule="evenodd" clip-rule="evenodd"
@@ -807,7 +834,7 @@
                 </linearGradient>
             </defs>
         </svg>
-    </a>
+    </a> --}}
 </body>
 
 </html>

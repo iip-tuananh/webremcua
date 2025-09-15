@@ -487,7 +487,7 @@ class FrontController extends Controller
         $category = PostCategory::where('slug', $slug)->first();
         $data['blogs'] = Post::with(['image'])->where(['status' => 1, 'cate_id' => $category->id])
             ->orderBy('id', 'DESC')
-            ->select(['id', 'name', 'intro', 'created_at', 'slug'])
+            ->select(['id', 'name', 'intro', 'created_at', 'slug', 'time'])
             ->paginate(99999);
 
         $data['cate_title'] = $category->name;
@@ -498,7 +498,7 @@ class FrontController extends Controller
         ])->where(['parent_id' => 0, 'show_home_page' => 1])->latest()->get();
         $data['newBlogs'] = Post::with(['image'])->where(['status' => 1])
             ->orderBy('id', 'DESC')
-            ->select(['id', 'name', 'slug', 'created_at'])
+            ->select(['id', 'name', 'slug', 'created_at', 'time'])
             ->limit(6)->get();
 
         $data['productCategories'] = Category::query()->with([
@@ -516,7 +516,7 @@ class FrontController extends Controller
     {
         $data['blogs'] = Post::with(['image', 'category'])->where(['status' => 1])
             ->orderBy('id', 'DESC')
-            ->select(['id', 'name', 'intro', 'created_at', 'slug', 'cate_id'])
+            ->select(['id', 'name', 'intro', 'created_at', 'slug', 'cate_id', 'time'])
             ->paginate(6);
 
         $data['cate_title'] = 'Tin tức';
@@ -527,7 +527,7 @@ class FrontController extends Controller
         ])->where(['parent_id' => 0, 'show_home_page' => 1])->latest()->get();
         $data['newBlogs'] = Post::with(['image'])->where(['status' => 1])
             ->orderBy('id', 'DESC')
-            ->select(['id', 'name', 'slug', 'created_at'])
+            ->select(['id', 'name', 'slug', 'created_at', 'time'])
             ->limit(6)->get();
 
         return view('site.blogs.list', $data);
@@ -539,7 +539,7 @@ class FrontController extends Controller
         $category = PostCategory::where('id', $blog->cate_id)->first();
         $data['other_blogs'] = Post::with(['image'])->where(['status' => 1, 'cate_id' => $blog->cate_id])
             ->where('id', '!=', $blog->id)
-            ->select(['id', 'name', 'intro', 'created_at', 'slug', 'cate_id'])
+            ->select(['id', 'name', 'intro', 'created_at', 'slug', 'cate_id', 'time'])
             ->limit(16)->inRandomOrder()->get();
         $data['blog_title'] = $blog->name;
         $data['blog_des'] = $blog->intro;
@@ -550,7 +550,7 @@ class FrontController extends Controller
         ])->where(['parent_id' => 0, 'show_home_page' => 1])->latest()->get();
         $data['newBlogs'] = Post::with(['image'])->where(['status' => 1])
             ->orderBy('id', 'DESC')
-            ->select(['id', 'name', 'slug', 'created_at'])
+            ->select(['id', 'name', 'slug', 'created_at', 'time'])
             ->limit(6)->get();
         $data['blog'] = $blog;
         $data['blog_slug'] = $blog->slug;

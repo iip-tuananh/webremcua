@@ -38,6 +38,13 @@
 		</div>
 	</div>
 	<div class="col-md-3 col-sm-4 col-xs-12">
+        <div class="form-group custom-group mb-4">
+			<label class="form-label required-label">Thời gian</label>
+			<input class="form-control" type="date" ng-model="form.time">
+			<span class="invalid-feedback d-block" role="alert">
+				<strong><% errors.time[0] %></strong>
+			</span>
+		</div>
 		<div class="form-group custom-group mb-4">
 			<label class="form-label required-label">Trạng thái</label>
 			<select id="my-select" class="form-control custom-select" ng-model="form.status">

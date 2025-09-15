@@ -64,9 +64,48 @@
                                         d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
                                         class=""></path>
                                 </svg>
-                                <b>Địa chỉ:</b>
+                                <b>Cơ sở 1:</b>
 
                                 {{ $config->address_company }}
+
+                            </div>
+                            <div class="item">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt"
+                                    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                                    class="svg-inline--fa fa-map-marker-alt fa-w-12">
+                                    <path fill="currentColor"
+                                        d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+                                        class=""></path>
+                                </svg>
+                                <b>Cơ sở 2:</b>
+
+                                {{ $config->address_company_2 }}
+
+                            </div>
+                            <div class="item">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt"
+                                    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                                    class="svg-inline--fa fa-map-marker-alt fa-w-12">
+                                    <path fill="currentColor"
+                                        d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+                                        class=""></path>
+                                </svg>
+                                <b>Cơ sở 3:</b>
+
+                                {{ $config->address_company_3 }}
+
+                            </div>
+                            <div class="item">
+                                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="map-marker-alt"
+                                    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"
+                                    class="svg-inline--fa fa-map-marker-alt fa-w-12">
+                                    <path fill="currentColor"
+                                        d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"
+                                        class=""></path>
+                                </svg>
+                                <b>Xưởng SX:</b>
+
+                                {{ $config->address_center_insurance }}
 
                             </div>
                             <div class="item">
