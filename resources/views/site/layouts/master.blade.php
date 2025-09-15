@@ -693,12 +693,12 @@
                     <span class="azt-contact-footer-btn-label">Menu</span>
                 </span>
             </a>
-            <a href="{{ route('front.contact-us') }}">
+            {{-- <a href="{{ route('front.contact-us') }}">
                 <span>
                     <img src="/site/images/map.png" alt="Map">
                     <span class="azt-contact-footer-btn-label">Map</span>
                 </span>
-            </a>
+            </a> --}}
             <a id="azt-contact-footer-btn-center" href="tel:{{ str_replace(' ', '', $config->hotline) }}">
                 <span class="azt-contact-footer-btn-center-icon">
                     <span class="phone-vr-circle-fill"></span>
@@ -710,12 +710,12 @@
                     </span>
                 </span>
             </a>
-            <a href="{{ $config->facebook }}" target="_blank">
+            {{-- <a href="{{ $config->facebook }}" target="_blank">
                 <span>
                     <img src="/site/images/messenger-icon.png" alt="Messenger">
                     <span class="azt-contact-footer-btn-label">Messenger</span>
                 </span>
-            </a>
+            </a> --}}
             <a href="https://zalo.me/{{ str_replace(' ', '', $config->zalo) }}" target="_blank">
                 <span>
                     <img class="zalo-icon" src="/site/images/zalo.png" alt="Zalo">
